@@ -122,7 +122,7 @@ section {
 .card {
     background-color: #fff;
     width: 21.25em;
-    box-shadow: 0 5px 25px rgb(1 1 1 / 15%);
+    box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
     border-radius: 10px;
     padding: 25px;
     margin: 15px;
@@ -139,6 +139,12 @@ section {
     text-align: center;
 }
 
+.card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; 
+    display:block; 
+}
 
 .info {
     text-align: center;
