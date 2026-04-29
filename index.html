@@ -1,257 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Bishoy Morkos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishoy Morkos Zarif — Web Developer & IT Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0f; --bg2: #111118; --card: #16161f;
+    --accent: #7c6af7; --accent2: #c084fc;
+    --text: #f0eeff; --muted: #8880aa;
+    --border: rgba(124,106,247,0.18); --radius: 14px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); z-index: 100; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cv { background: var(--accent); color: #fff !important; padding: 0.42rem 1rem; border-radius: 100px; font-size: 0.82rem !important; transition: box-shadow 0.2s, transform 0.2s; }
+  .nav-cv:hover { box-shadow: 0 4px 20px rgba(124,106,247,0.4); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { padding: 7rem 3rem 5rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .hero-badge { display: inline-block; background: rgba(124,106,247,0.12); border: 1px solid var(--border); color: var(--accent2); font-size: 0.78rem; font-weight: 500; padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 2rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; background: linear-gradient(160deg, #fff 30%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { font-size: 1.1rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; text-decoration: none; padding: 0.85rem 2rem; border-radius: 100px; font-weight: 500; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,106,247,0.35); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--accent2); text-decoration: none; padding: 0.85rem 2rem; border-radius: 100px; font-weight: 500; font-size: 0.95rem; border: 1px solid rgba(192,132,252,0.35); transition: transform 0.2s, border-color 0.2s, background 0.2s; }
+  .btn-outline:hover { transform: translateY(-2px); border-color: var(--accent2); background: rgba(192,132,252,0.07); }
+
+  /* SHARED */
+  section { padding: 5rem 3rem; max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 600; margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 3rem; color: var(--text); }
+  .section-divider { width: 100%; height: 1px; background: var(--border); max-width: 960px; margin: 0 auto; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: var(--muted); font-size: 0.97rem; line-height: 1.8; margin-bottom: 1.5rem; }
+  .about-dl { display: flex; flex-direction: column; gap: 0.75rem; }
+  .about-dl-row { display: flex; gap: 0.75rem; }
+  .about-dl-row .lbl { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); font-weight: 600; min-width: 80px; padding-top: 0.1rem; }
+  .about-dl-row .val { font-size: 0.9rem; color: var(--text); }
+  .about-right { display: flex; flex-direction: column; gap: 1.25rem; }
+  .cv-card { background: linear-gradient(135deg, rgba(124,106,247,0.15), rgba(192,132,252,0.08)); border: 1px solid rgba(124,106,247,0.35); border-radius: var(--radius); padding: 2rem; text-align: center; }
+  .cv-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .cv-card p { font-size: 0.83rem; color: var(--muted); margin-bottom: 1.25rem; }
+  .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; }
+  .edu-card .edu-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem; }
+  .edu-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .edu-card p { font-size: 0.82rem; color: var(--muted); }
+  .proj-tag { display: inline-block; background: rgba(124,106,247,0.12); color: var(--accent2); font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 100px; margin-top: 0.6rem; }
+
+  /* TRAINING */
+  .training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+  .training-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+  .training-card:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-3px); }
+  .training-card .org { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent2); margin-bottom: 0.5rem; }
+  .training-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .training-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .training-card ul li { font-size: 0.83rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .training-card ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+  /* CERTS */
+  .cert-filter-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .cert-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .cert-btn:hover { border-color: var(--accent); color: var(--text); }
+  .cert-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, transform 0.2s; }
+  .cert-card:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-3px); }
+  .cert-card.hidden { display: none; }
+  .cbadge { display: inline-block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.75rem; border-radius: 100px; width: fit-content; }
+  .badge-web { background: rgba(124,106,247,0.15); color: var(--accent2); }
+  .badge-net { background: rgba(56,189,248,0.12); color: #7dd3fc; }
+  .badge-sys { background: rgba(251,191,36,0.12); color: #fcd34d; }
+  .badge-design { background: rgba(244,114,182,0.12); color: #f9a8d4; }
+  .badge-prog { background: rgba(52,211,153,0.12); color: #6ee7b7; }
+  .cert-card h3 { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; }
+  .cert-card p { font-size: 0.82rem; color: var(--muted); }
+  .cert-card .cert-year { font-size: 0.78rem; color: var(--muted); margin-top: auto; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-3px); }
+  .skill-icon { width: 40px; height: 40px; background: rgba(124,106,247,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem; }
+  .skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; font-family: 'Syne', sans-serif; }
+  .skill-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.25s, border-color 0.2s; }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(124,106,247,0.5); }
+  .project-img { width: 100%; height: 180px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 3rem; overflow: hidden; }
+  .project-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .project-info { padding: 1.25rem; }
+  .project-info h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .project-info p { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; }
+  .project-link { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--accent2); font-size: 0.82rem; font-weight: 500; text-decoration: none; transition: gap 0.2s; }
+  .project-link:hover { gap: 0.55rem; }
+
+  /* COURSES */
+  .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+  .course-pill { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+  .course-pill:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-2px); }
+  .course-pill span { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+  .course-pill p { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+
+  /* CONTACT */
+  .contact-section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 3.5rem; text-align: center; margin: 0 3rem 5rem; }
+  .contact-section h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .contact-section > p { color: var(--muted); margin-bottom: 2.5rem; }
+  .contact-items { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .contact-item { display: flex; align-items: center; gap: 0.75rem; }
+  .contact-item .icon { width: 38px; height: 38px; background: rgba(124,106,247,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .contact-item span { font-size: 0.82rem; color: var(--muted); }
+  .contact-item strong { display: block; font-size: 0.9rem; color: var(--text); font-weight: 500; }
+  .contact-item a { color: var(--accent2); text-decoration: none; }
+
+  footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.82rem; }
+  footer a { color: var(--accent2); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.25rem; } .nav-links { gap: 0.75rem; }
+    .hero { padding: 4rem 1.5rem 3rem; } section { padding: 3.5rem 1.5rem; }
+    .contact-section { margin: 0 1.5rem 3.5rem; padding: 2.5rem 1.5rem; }
+    .contact-items { gap: 1.5rem; flex-direction: column; align-items: flex-start; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">Bishoy</a>
-        <nav class="navigation">
-            <a href="#Skills">Skills</a>
-            <a href="#Online-Course">Online Course</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">
-            <i class="fas fa-moon"></i>
-        </button>
-    </header>
 
-    <section class="main">
-        <div>
-            <h2>Hello, I'm Bishoy<br><span>Information technology</span></h2>
-            <h3>I'm a professional Web Developer. Our Main Goal to help & Satisfied the Local & Global Clients by web development solutions</h3>
-            <a href="#projects" class="main-btn">View my work</a>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/bishoy-morkos-71a820216/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/bishoymorkos1/"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/BishoyMZarif"><i class="fab fa-github"></i></a>
-                <a href="https://www.facebook.com/bishoy.morkos.3/"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
-    </section>
-<section class="cards" id="certificates">
-    <h2 class="title">Certificates</h2>
-    <div class="content">
-        <div class="card">
-            <div class="info">
-                <h3>My Certificates</h3>
-                <select id="certSelect">
-                    <option value="">-- Choose a Certificate --</option>
-                    <option value="web">Web Development</option>
-                    <option value="networking">Networking</option>
-                    <option value="design">Graphic Design</option>
-                    <option value="programming">Programming</option>
-                </select>
-            </div>
-        </div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">BMZ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#certificates">Certs</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="Bishoy_Morkos_CV.pdf" download class="nav-cv">⬇ Download CV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Available for work · Luxor, Egypt</div>
+  <h1>Bishoy Morkos Zarif</h1>
+  <p>Computer Science Graduate · Front-End Developer · IT &amp; Network Specialist. Crafting clean web experiences and managing robust IT infrastructure.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View My Work →</a>
+    <a href="Bishoy_Morkos_CV.pdf" download class="btn-outline">⬇ Download CV</a>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Computer Science graduate (2024) with a strong foundation in front-end development and IT infrastructure. Skilled in HTML, CSS, JavaScript, networking fundamentals, and Windows Server administration.</p>
+      <p>Experienced in working with Active Directory, Group Policy, and domain controller configuration. Passionate about learning new technologies and delivering efficient, user-focused technical solutions.</p>
+      <div class="about-dl">
+        <div class="about-dl-row"><span class="lbl">Phone</span><span class="val">+20 102 403 8487</span></div>
+        <div class="about-dl-row"><span class="lbl">Email</span><span class="val">BishoyMorkosZarif@gmail.com</span></div>
+        <div class="about-dl-row"><span class="lbl">Location</span><span class="val">Luxor, Egypt</span></div>
+        <div class="about-dl-row"><span class="lbl">Status</span><span class="val">Open to freelance &amp; full-time</span></div>
+      </div>
     </div>
+    <div class="about-right">
+      <div class="cv-card">
+        <h3>📄 My Full CV</h3>
+        <p>Download my complete resume including education, training, and all technical skills.</p>
+        <a href="Bishoy_Morkos_CV.pdf" download class="btn-primary" style="font-size:0.9rem;padding:0.75rem 1.75rem;">⬇ Download CV (PDF)</a>
+      </div>
+      <div class="edu-card">
+        <div class="edu-lbl">Education</div>
+        <h3>Bachelor's Degree in Computer Science</h3>
+        <p>The Egyptian E-Learning University · 2024</p>
+        <span class="proj-tag">Graduation Project: Predict Blood Sugar (Data Mining)</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-    
-    <section class="cards" id="Skills">
-        <h2 class="title">Skills</h2>
-        <div class="content">
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-edit"></i>
-                </div>
-                <div class="info">
-                    <h3>Fast Typing</h3>
-                    <p>I can type more than 10 words per minute.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="info">
-                    <h3>Time Management</h3>
-                    <p>I efficiently manage time in my projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-diagram-project"></i>
-                </div>
-                <div class="info">
-                    <h3>Project Management</h3>
-                    <p>I handle project management with top tools and skills.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-image"></i>
-                </div>
-                <div class="info">
-                    <h3>Adobe Photoshop</h3>
-                    <p>I use Adobe Photoshop for image editing and graphic design.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <div class="info">
-                    <h3>Adobe Premiere</h3>
-                    <p>I use Adobe Premiere for professional video editing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="section-divider"></div>
 
-    <section class="projects" id="projects">
-        <h2 class="title">Projects</h2>
-        <div class="content">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="imge/work1.jpg" />
-                </div>
-                <div class="project-info">
-                    <p class="project-category">Kasper Design</p>
-                    <strong class="project-title">
-                        <span>Kasper</span>
-                        <a href="https://bishoymzarif.github.io/Kasper.github.io/" class="more-details">Show Work</a>
-                    </strong>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="imge/work2.jpg" />
-                </div>
-                <div class="project-info">
-                    <p class="project-category">Ezlero Design</p>
-                    <strong class="project-title">
-                        <span>Dev Books</span>
-                        <a href="https://bishoymzarif.github.io/Elzero.github.io/" class="more-details">More details</a>
-                    </strong>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- TRAINING -->
+<section id="training">
+  <div class="section-label">Hands-On Experience</div>
+  <div class="section-title">Training</div>
+  <div class="training-grid">
+    <div class="training-card">
+      <div class="org">Steigenberger Acthi — Luxor</div>
+      <h3>IT Systems Administration</h3>
+      <ul>
+        <li>Active Directory Administration</li>
+        <li>Windows Server Administration</li>
+        <li>User &amp; Permission Management</li>
+        <li>Domain Controller Configuration</li>
+        <li>Group Policy Management</li>
+      </ul>
+    </div>
+    <div class="training-card">
+      <div class="org">Steigenberger Nile Place</div>
+      <h3>Hospitality IT Systems</h3>
+      <ul>
+        <li>Opera PMS System</li>
+        <li>Sun Financial System</li>
+        <li>Material Control System</li>
+        <li>Hotel technology infrastructure</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <section class="cards" id="Online-Course">
-        <h2 class="title">Online Course</h2>
-        <div class="content">
-            <div class="card">
-                <div class="icon">
-                    <i class="fab fa-html5"></i>
-                </div>
-                <div class="info">
-                    <h3>HTML5 Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fab fa-css3-alt"></i>
-                </div>
-                <div class="info">
-                    <h3>CSS Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fa-brands fa-js"></i>
-                </div>
-                <div class="info">
-                    <h3>JavaScript Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fa-brands fa-figma"></i>
-                </div>
-                <div class="info">
-                    <h3>Figma</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fab fa-github"></i>
-                </div>
-                <div class="info">
-                    <h3>Git & GitHub Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="imge/python-logo-only.png" alt="Python">
-                </div>
-                <div class="info">
-                    <h3>Python Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="imge/CCNA 200-301 Courses.jpeg" alt="Networks">
-                </div>
-                <div class="info">
-                    <h3>CCNA 200_301 Course</h3>
-                    <p>I used it in some projects.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="section-divider"></div>
 
-    <section class="cards contact" id="contact">
-        <h2 class="title">Let's work together</h2>
-        <div class="content">
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-phone" aria-label="Phone Icon"></i>
-                </div>
-                <div class="info">
-                    <h3>Phone</h3>
-                    <p>+201024038487</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-house" aria-label="House Icon"></i>
-                </div>
-                <div class="info">
-                    <h3>Address</h3>
-                    <p>Shark El Ska, Luxor, Egypt</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="icon">
-                    <i class="fas fa-envelope" aria-label="Email Icon"></i>
-                </div>
-                <div class="info">
-                    <h3>Email</h3>
-                    <p>BishoyMorkosZarif@gmail.com</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-label">Achievements</div>
+  <div class="section-title">My Certificates</div>
+  <div class="cert-filter-row">
+    <button class="cert-btn active" onclick="filterCerts('all', this)">All</button>
+    <button class="cert-btn" onclick="filterCerts('web', this)">Web Development</button>
+    <button class="cert-btn" onclick="filterCerts('net', this)">Networking</button>
+    <button class="cert-btn" onclick="filterCerts('sys', this)">System Admin</button>
+    <button class="cert-btn" onclick="filterCerts('design', this)">Graphic Design</button>
+    <button class="cert-btn" onclick="filterCerts('prog', this)">Programming</button>
+  </div>
+  <div class="certs-grid" id="certsGrid">
+    <div class="cert-card" data-cat="web">
+      <span class="cbadge badge-web">Web Development</span>
+      <h3>HTML5 &amp; CSS3 Fundamentals</h3>
+      <p>Comprehensive course covering modern HTML5 and CSS3 standards and best practices.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="web">
+      <span class="cbadge badge-web">Web Development</span>
+      <h3>JavaScript Essentials</h3>
+      <p>Core JavaScript concepts including DOM manipulation and ES6+ features.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="net">
+      <span class="cbadge badge-net">Networking</span>
+      <h3>CCNA 200-301</h3>
+      <p>Cisco Certified Network Associate — routing, switching, TCP/IP, IP subnetting.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="sys">
+      <span class="cbadge badge-sys">System Admin</span>
+      <h3>MCSA — Windows Server</h3>
+      <p>Microsoft Certified Solutions Associate covering Windows Server administration.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="design">
+      <span class="cbadge badge-design">Graphic Design</span>
+      <h3>Adobe Photoshop</h3>
+      <p>Image editing, retouching, and graphic design using Adobe Photoshop.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="design">
+      <span class="cbadge badge-design">Graphic Design</span>
+      <h3>Figma UI/UX Design</h3>
+      <p>User interface and experience design using Figma for web and mobile.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+    <div class="cert-card" data-cat="prog">
+      <span class="cbadge badge-prog">Programming</span>
+      <h3>Python Programming</h3>
+      <p>Python fundamentals including data structures, functions, and scripting.</p>
+      <span class="cert-year">📅 Online Course</span>
+    </div>
+  </div>
+</section>
 
-    <footer class="footer">
-        <p class="footer-title">Copyrights @ <span>Bishoy Morkos</span></p>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/bishoy-morkos-71a820216/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/bishoymorkos1/"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/BishoyMZarif"><i class="fab fa-github"></i></a>
-            <a href="https://www.facebook.com/bishoy.morkos.3/"><i class="fab fa-facebook"></i></a>
-        </div>
-    </footer>
+<div class="section-divider"></div>
 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Bring</div>
+  <div class="section-title">Technical Skills</div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">🌐</div><h3>Front-End Development</h3><p>HTML5, CSS3, JavaScript — building responsive, modern web pages.</p></div>
+    <div class="skill-card"><div class="skill-icon">🔌</div><h3>Networking</h3><p>TCP/IP, IP Addressing, Subnetting, Routing &amp; Switching basics.</p></div>
+    <div class="skill-card"><div class="skill-icon">🖥</div><h3>System Administration</h3><p>Windows Server, Active Directory, Group Policy, domain configuration.</p></div>
+    <div class="skill-card"><div class="skill-icon">⚡</div><h3>Fast Typing</h3><p>Efficient typing skills that keep up with the pace of development.</p></div>
+    <div class="skill-card"><div class="skill-icon">🎨</div><h3>Adobe Photoshop</h3><p>Image editing and graphic design for web and print.</p></div>
+    <div class="skill-card"><div class="skill-icon">🗓</div><h3>Time Management</h3><p>Delivering projects on schedule with efficient time planning.</p></div>
+  </div>
+</section>
 
+<div class="section-divider"></div>
 
-    <script src="style.js"></script>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">My Work</div>
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-img"><img src="imge/work1.jpg" alt="Kasper Design" onerror="this.style.display='none'"></div>
+      <div class="project-info">
+        <h3>Kasper Design</h3>
+        <p>A clean, modern web design project built with HTML &amp; CSS.</p>
+        <a href="https://bishoymzarif.github.io/Kasper.github.io/" target="_blank" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img"><img src="imge/work2.jpg" alt="Dev Books" onerror="this.style.display='none'"></div>
+      <div class="project-info">
+        <h3>Dev Books (Elzero)</h3>
+        <p>A developer resources website with clean layout and navigation.</p>
+        <a href="https://bishoymzarif.github.io/Elzero.github.io/" target="_blank" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="font-size:2.5rem;">🩸</div>
+      <div class="project-info">
+        <h3>Blood Sugar Predictor</h3>
+        <p>Graduation project — predicting blood sugar levels using data mining techniques in Orange.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-label">Education</div>
+  <div class="section-title">Online Courses</div>
+  <div class="courses-grid">
+    <div class="course-pill"><span>🌐</span><p>HTML5</p></div>
+    <div class="course-pill"><span>🎨</span><p>CSS3</p></div>
+    <div class="course-pill"><span>⚙️</span><p>JavaScript</p></div>
+    <div class="course-pill"><span>🖌</span><p>Figma</p></div>
+    <div class="course-pill"><span>🔧</span><p>Git &amp; GitHub</p></div>
+    <div class="course-pill"><span>🐍</span><p>Python</p></div>
+    <div class="course-pill"><span>🔌</span><p>CCNA 200-301</p></div>
+    <div class="course-pill"><span>🖥</span><p>MCSA</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <h2>Let's Work Together</h2>
+  <p>Open to freelance projects and full-time opportunities.</p>
+  <div class="contact-items">
+    <div class="contact-item"><div class="icon">📞</div><div><span>Phone</span><strong>+201024038487</strong></div></div>
+    <div class="contact-item"><div class="icon">📍</div><div><span>Location</span><strong>Luxor, Egypt</strong></div></div>
+    <div class="contact-item"><div class="icon">✉️</div><div><span>Email</span><strong>BishoyMorkosZarif@gmail.com</strong></div></div>
+    <div class="contact-item"><div class="icon">⬇️</div><div><span>Resume</span><strong><a href="Bishoy_Morkos_CV.pdf" download>Download CV</a></strong></div></div>
+  </div>
+</div>
+
+<footer>
+  © 2025 Bishoy Morkos Zarif — Web Developer &amp; IT Specialist ·
+  <a href="https://github.com/bishoymzarif" target="_blank">GitHub</a>
+</footer>
+
+<script>
+  function filterCerts(cat, btn) {
+    document.querySelectorAll('.cert-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cert-card').forEach(card => {
+      card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+    });
+  }
+</script>
 </body>
 </html>
-
-
-
