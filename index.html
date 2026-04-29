@@ -59,6 +59,20 @@
   .edu-card p { font-size: 0.82rem; color: var(--muted); }
   .proj-tag { display: inline-block; background: rgba(124,106,247,0.12); color: var(--accent2); font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 100px; margin-top: 0.6rem; }
 
+  /* WORK EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 1rem; align-items: start; transition: border-color 0.2s, transform 0.2s; }
+  .exp-card:hover { border-color: rgba(124,106,247,0.5); transform: translateY(-3px); }
+  .exp-card .exp-org { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent2); grid-column: 1; }
+  .exp-card .exp-date { font-size: 0.78rem; color: var(--muted); grid-column: 2; text-align: right; white-space: nowrap; }
+  .exp-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; grid-column: 1 / -1; margin-top: 0.2rem; }
+  .exp-card .exp-location { font-size: 0.82rem; color: var(--muted); grid-column: 1 / -1; margin-bottom: 0.5rem; }
+  .exp-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; grid-column: 1 / -1; }
+  .exp-card ul li { font-size: 0.83rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-card ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .exp-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; grid-column: 1 / -1; margin-top: 0.75rem; }
+  .exp-tag { background: rgba(124,106,247,0.1); border: 1px solid rgba(124,106,247,0.2); color: var(--accent2); font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.7rem; border-radius: 100px; }
+
   /* TRAINING */
   .training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
   .training-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
@@ -145,6 +159,7 @@
   <a class="nav-logo" href="#">BMZ</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#training">Training</a></li>
     <li><a href="#certificates">Certs</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -195,6 +210,37 @@
         <span class="proj-tag">Graduation Project: Predict Blood Sugar (Data Mining)</span>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WORK EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Professional Experience</div>
+  <div class="section-title">Work Experience</div>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-org">Sonesta St. George Luxor</div>
+      <div class="exp-date">Luxor, Egypt</div>
+      <h3>IT Support Specialist</h3>
+      <div class="exp-location">📍 5-Star Hotel · Corniche El Nile, Luxor</div>
+      <ul>
+        <li>Provided IT support and troubleshooting for hotel staff and systems</li>
+        <li>Managed and maintained hotel IT infrastructure and hardware</li>
+        <li>Operated and supported Opera PMS (Property Management System)</li>
+        <li>Handled user accounts, permissions, and access control</li>
+        <li>Ensured uptime and reliability of hotel technology systems</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">IT Support</span>
+        <span class="exp-tag">Opera PMS</span>
+        <span class="exp-tag">Hotel Systems</span>
+        <span class="exp-tag">Infrastructure</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
